@@ -173,6 +173,15 @@ input[type="text"], input[type="number"], select {
     font-weight: bold;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 .text-center { text-align: center; }
 .summary-text { text-align: center; margin-bottom: 5px; font-weight: bold; }
 .alt-color { color: var(--accent-color); margin-bottom: 15px; }

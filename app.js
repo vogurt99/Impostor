@@ -299,6 +299,20 @@ function movePlayer(index, direction) {
     }
 }
 
+function adjustImpostorCount(amount) {
+    const countInput = document.getElementById('impostor-count');
+    let currentValue = parseInt(countInput.value) || 0;
+    const maxLimit = playerRegistry.length;
+
+    currentValue += amount;
+
+    // Constrain boundaries between 0 and total active players
+    if (currentValue < 0) currentValue = 0;
+    if (currentValue > maxLimit) currentValue = maxLimit;
+
+    countInput.value = currentValue;
+}
+
 function switchScreen(screenId) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(screenId).classList.add('active');
@@ -386,7 +400,6 @@ function showResults() {
     const tbody = document.getElementById('results-table-body');
     tbody.innerHTML = "";
     
-    document.getElementById('word-reveal-summary').innerText = `Innocent Word: ${gameState.secretWord}`;
     document.getElementById('alt-word-reveal-summary').innerText = gameState.isAltMode ? `Impostor Word: ${gameState.altWord}` : "";
 
     gameState.players.forEach((player, index) => {
