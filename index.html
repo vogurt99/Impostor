@@ -29,7 +29,7 @@
         <div class="form-group">
             <label>Players Management</label>
             <div class="player-ui-box">
-                <div class="player- put-row">
+                <div class="player-input-row">
                     <input type="text" id="new-player-name" placeholder="Enter player name">
                     <button type="button" class="btn-add" onclick="addPlayerFromUI()">Add</button>
                 </div>
@@ -40,7 +40,7 @@
         <div class="form-group">
             <label>Number of Impostors</label>
             <div class="player-input-row">
-                <input type="number" id="impostor-count" value="1" min="0" inputmode="none">
+                <input type="number" id="impostor-count" value="1" min="0" readonly>
                 <div class="player-controls" style="display: flex; gap: 4px;">
                     <button type="button" class="btn-ctrl" onclick="adjustImpostorCount(-1)">▼</button>
                     <button type="button" class="btn-ctrl" onclick="adjustImpostorCount(1)">▲</button>

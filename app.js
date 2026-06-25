@@ -306,12 +306,44 @@ function adjustImpostorCount(amount) {
 
     currentValue += amount;
 
-    // Constrain boundaries between 0 and total active players
     if (currentValue < 0) currentValue = 0;
     if (currentValue > maxLimit) currentValue = maxLimit;
 
     countInput.value = currentValue;
 }
+
+// Bind direct touch and click listeners to bypass mobile navigation delays
+function bindImpostorControls() {
+    const btnUp = document.getElementById('btn-impostor-up');
+    const btnDown = document.getElementById('btn-impostor-down');
+
+    if (btnUp && btnDown) {
+        // Handle Up Button
+        btnUp.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            adjustImpostorCount(1);
+        }, { passive: false });
+        btnUp.addEventListener('click', (e) => {
+            adjustImpostorCount(1);
+        });
+
+        // Handle Down Button
+        btnDown.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            adjustImpostorCount(-1);
+        }, { passive: false });
+        btnDown.addEventListener('click', (e) => {
+            adjustImpostorCount(-1);
+        });
+    }
+}
+
+// Append binding execution inside your existing initialization workflow
+const originalInit = init;
+init = function() {
+    originalInit();
+    bindImpostorControls();
+};
 
 function switchScreen(screenId) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
